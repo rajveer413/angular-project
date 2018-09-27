@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Bordered Table</h2>
+  <p>The .table-bordered class adds borders to a table:</p>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>{{squad.data.team[0].name}}</th>
+        <th>{{squad.data.team[1].name}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of team1players; let i = index;">
+        <td><a routerLink="/player/{{team1players[i].pid}}">{{team1players[i].name}}</a></td>
+        <td><a routerLink="/player/{{team2players[i].pid}}">{{team2players[i].name}}</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

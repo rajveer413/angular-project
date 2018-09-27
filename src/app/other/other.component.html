@@ -1,0 +1,40 @@
+<div class='container'>
+	<table class="table border border-primary">
+		<tr>
+			<th>Team 1</th>
+			<th>Team 2</th>
+			<th>Match Date</th>
+			<th>Toss Winner</th>
+			<th>Match Started Time</th>
+			<th>View Scores</th>
+			<th>Squad</th>
+		</tr>
+
+		<tr *ngFor="let match of matches.matches">
+			<td>{{match['team-1']}}</td>
+			<td>{{match['team-2']}}</td>
+			<td>{{match.date | date}}</td>
+			<td>{{match.toss_winner_team}}</td>
+			<td>{{match.dateTimeGMT | date:'shortTime' }}</td>
+			<td>
+				<span *ngIf="match.matchStarted">
+				<a routerLink="/other/{{match.unique_id}}">
+			        View
+			    </a>
+				</span>
+			</td>
+			<td>
+				<a routerLink="/squad/{{match.unique_id}}">
+			        View
+			    </a>
+			</td>
+		</tr>
+	</table>
+</div> 
+<!-- <div>
+    <li *ngFor="let score of cricketScore">
+      <a routerLink="/other/{{score.unique_id}}">
+        Live Score
+      </a>
+    </li>
+</div> -->

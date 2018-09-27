@@ -1,0 +1,219 @@
+	<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Company Name</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					<form class="form-horizontal" method="post" action="#" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" id="name"  placeholder="Enter your Name" formControlName="fullName" >
+
+										<div *ngIf='registerForm.controls.fullName.errors'>
+
+											<span *ngIf="registerForm.controls.fullName.errors.required">
+												THis field are allowed
+										    </span>
+										    <span *ngIf="registerForm.controls.fullName.errors.minlength">
+										    	Min Lenght Required
+										    </span>
+										    <span *ngIf="registerForm.controls.fullName.errors.pattern">
+										    	Please enter  valid name
+										    </span>
+										</div>
+							</div>
+						</div>
+					</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email" formControlName="email"/>
+
+									<div *ngIf='registerForm.controls.email.errors'>
+
+											<span *ngIf="registerForm.controls.email.errors.required">
+												THis field are allowed
+										    </span>
+										    <span *ngIf="registerForm.controls.email.errors.minlength">
+										    	Min Lenght Required
+										    </span>
+										    <span *ngIf="registerForm.controls.email.errors.pattern">
+										    	please enter valid email
+										    </span>
+										</div>
+							</div>
+
+								</div>
+							</div>
+						
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Username</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username" formControlName="username"/>
+
+									<div *ngIf='registerForm.controls.username.errors'>
+
+											<span *ngIf="registerForm.controls.username.errors.required">
+												THis field are allowed
+										    </span>
+										    <span *ngIf="registerForm.controls.username.errors.minlength">
+										    	Min Lenght Required
+										    </span>
+										    <span *ngIf="registerForm.controls.username.errors.pattern">
+										    	Username is not Valid
+										    </span>
+										</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Continents</label>
+							<select class='form-control' #continent (change)="getCountries(continent.value)" formControlName="continent">
+				            	<option value="">Select</option>
+				            	<option *ngFor="let continent of continents.geonames" value="{{continent.geonameId}}" >{{continent.name}}</option>
+				            	
+		                     </select>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Country</label>
+							<select class='form-control' #country (change)="getStates(country.value)" formControlName="country">
+				            	<option value="">Select</option>
+				            	<option *ngFor="let country of countries.geonames" value="{{country.geonameId}}" >{{country.name}}</option>
+		                     </select>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">State</label>
+							<select class='form-control' #state (change)="getCities(state.value)" formControlName="state">
+				            	<option value="">Select</option>
+				            	<option *ngFor="let state of states.geonames" value="{{state.geonameId}}" >{{state.name}}</option>
+		                     </select>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">City</label>
+				            <select class='form-control' #city formControlName="city" >
+				            	<option value="">Select</option>
+				            	<option *ngFor="let city of cities.geonames" value="{{city.geonameId}}" >{{city.name}}</option>
+		                     </select>
+		                     
+						</div>
+			
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" formControlName="password"/>
+
+									<div *ngIf='registerForm.controls.password.errors'>
+
+											<span *ngIf="registerForm.controls.password.errors.required">
+												THis field are allowed
+										    </span>
+										    <span *ngIf="registerForm.controls.password.errors.minlength">
+										    	Min Lenght Required
+										    </span>
+										    <span *ngIf="registerForm.controls.password.errors.pattern">
+										    	please enter Stong Password
+										    </span>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password" formControlName="confirmPassword"/>
+
+									<div *ngIf='registerForm.controls.confirmPassword.errors'>
+
+											<span *ngIf="registerForm.controls.confirmPassword.errors.required">
+												THis field are allowed
+										    </span>
+										    <span *ngIf="registerForm.controls.confirmPassword.errors.minlength">
+										    	Min Lenght Required
+										    </span>
+										    <span *ngIf="registerForm.controls.confirmPassword.errors.pattern">
+										    	please enter Stong Password
+										    </span>
+										    <span *ngIf="registerForm.controls.confirmPassword.errors.MatchPassword">
+										    	confirm not matched
+										    </span>
+
+										</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<button type="submit" class="btn btn-primary btn-lg btn-block login-button" [disabled]='!registerForm.valid'>Register</button>
+						</div>
+						<div class="login-register">
+				            <a href="index.php">Login</a>
+				         </div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div [hidden]="!submitted" class="container">
+  <h2>You submitted the following:</h2>
+  <div class="row">
+    <div class="col-xs-3">Name</div>
+    <div class="col-xs-9  pull-left">{{ registerForm.controls?.fullName.value }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Email</div>
+    <div class="col-xs-9 pull-left">{{ registerForm.controls?.email.value }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">UserName</div>
+    <div class="col-xs-9 pull-left">{{ registerForm.controls?.username.value }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Continetns</div>
+    <div class="col-xs-9 pull-left">{{ registerForm.controls?.continent.value }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">country</div>
+    <div class="col-xs-9 pull-left">{{ registerForm.controls?.country.value }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">State</div>
+    <div class="col-xs-9 pull-left">{{ registerForm.controls?.state.value }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">city</div>
+    <div class="col-xs-9 pull-left">{{ registerForm.controls?.city.value }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Password</div>
+    <div class="col-xs-9 pull-left">{{ registerForm.controls?.password.value }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">confirmpassword</div>
+    <div class="col-xs-9 pull-left">{{ registerForm.controls?.confirmPassword.value}}</div>
+  </div>
+  <br>
+  <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+</div>
+
+
